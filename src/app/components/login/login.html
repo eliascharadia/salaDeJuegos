@@ -1,1 +1,51 @@
-<p>login works!</p>
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center bg-gamer">
+  
+  <div class="particles">
+    @for (p of [].constructor(30); track $index) {
+      <span></span>
+    }
+  </div>
+
+  <div class="login-box-gamer">
+
+    <h3 class="">🎮 Login</h3>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control gamer-input"
+            placeholder="Email"
+            [(ngModel)]="email" name="email"
+            required email
+            #emailField="ngModel">
+
+        @if (emailField.invalid && emailField.touched){
+          <div class="text-danger small mt-1">Correo inválido</div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-control gamer-input"
+            placeholder="Contraseña"
+            [(ngModel)]="password" name="password"
+            required minlength="6"
+            #passField="ngModel">
+
+        @if (passField.invalid && passField.touched){
+          <div class="text-danger small mt-1">Mínimo 6 caracteres</div>
+        }
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-gamer" [disabled]="loginForm.invalid">
+          🚀 Ingresar
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

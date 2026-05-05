@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
+  particles = Array(30);
+  email =  '';
+  password = '';
+
+  onSubmit():void{
+    console.log(`Login: `, this.email, this.password);
+  }
+
 
 }
