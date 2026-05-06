@@ -3,21 +3,24 @@
   <div class="collapse navbar-collapse d-flex justify-content-between">
 
     <!-- IZQUIERDA -->
-    <a class="navbar-brand fw-bold" href="#">
+    <a class="navbar-brand fw-bold" routerLink="/bienvenidahome">
       🎮 GameHub
     </a>
 
     <!-- DERECHA -->
     <div class="d-flex align-items-center gap-3">
 
+      
       @if (isLogged) {
         <span class="user-name">👤 Elías </span>
         <button class="btn btn-logout" (click)="logout()">Salir</button>
       } @else {
-        <button class="btn btn-login">Login</button>
+        <a class="btn-link-gamer" routerLink="/login" routerLinkActive="active-link">Iniciar Sesion</a>
+        <a class="btn-link-gamer" routerLink="/register" routerLinkActive="active-link">Registrarse</a>
+        <!-- <button class="btn btn-login">Login</button> -->
       }
       
-      <a routerLink="/quiensoy">¿Quién soy?</a>
+      <a class="btn-link-gamer" routerLink="/quiensoy" routerLinkActive="active-link">¿Quién soy?</a>
     </div>
 
   </div>
