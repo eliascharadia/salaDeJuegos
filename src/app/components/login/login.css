@@ -111,3 +111,32 @@
     transform: perspective(500px) rotateX(60deg) translateY(40px);
   }
 }
+
+/* Celular */
+@media (max-width: 576px) {
+  .login-box-gamer {
+    padding: 1.5rem;
+  }
+
+  .login-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+  .login-box-gamer {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-box-gamer {
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .btn-gamer {
+    font-size: 0.9rem;
+  }
+}

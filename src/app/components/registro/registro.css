@@ -108,3 +108,21 @@
 .text-muted-custom {
   color: rgba(255,255,255,0.6);
 }
+
+/* Celular */
+@media (max-width: 576px) {
+  .register-box {
+    padding: 1.5rem;
+  }
+
+  .registar-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+  .register-box {
+    max-width: 400px;
+  }
+}

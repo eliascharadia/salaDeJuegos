@@ -8,6 +8,8 @@
 /* Logo */
 .navbar-brand {
   color: #00bfff !important;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem; /* importante porque la fuente es grande */
   letter-spacing: 1px;
 }
 
@@ -76,4 +78,26 @@
   background: rgba(0,191,255,0.15);
   color: white;
   box-shadow: 0 0 10px rgba(0,191,255,0.6);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* .navbar-collapse {
+  background: rgba(10,10,20,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px;
+} */
+
+@media (min-width: 992px) {
+  .navbar-collapse {
+    background: transparent;
+    backdrop-filter: none;
+    margin-top: 0;
+    padding: 0;
+  }
 }
