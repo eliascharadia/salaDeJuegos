@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  isLogged = true; // simulación
+  isLogged = false; // simulación
 
   logout() {
     console.log('Cerrar sesión');
