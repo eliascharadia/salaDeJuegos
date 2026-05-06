@@ -1,9 +1,11 @@
 /* Fondo gamer */
 .bg-gamer {
+  background:
+    radial-gradient(circle at top, rgba(0,191,255,0.2), transparent 50%),
+    linear-gradient(135deg, #0f0f1a, #000);
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at top, #0f0f1a, #000);
 }
 
 /* Grid animado */
@@ -23,19 +25,19 @@
 
 
 .login-box-gamer {
-   background: rgba(255, 255, 255, 0.041); /* transparencia */
+  position: relative;
+  background: rgba(255, 255, 255, 0.041); /* transparencia */
   backdrop-filter: blur(12px);           /* efecto vidrio */
   -webkit-backdrop-filter: blur(12px);   /* soporte Safari */
 
   border-radius: 15px;
   padding: 2.5rem;
   width: 100%;
-  max-width: 380px;
-
+  max-width: 400px;
   color: white;
 
   /* bordes tipo vidrio */
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.027);
 
   /* sombra suave */
   box-shadow: 
@@ -88,7 +90,7 @@
 
 /* Estado deshabilitado */
 .btn-gamer:disabled {
-  background: #523c3c !important;
+  background: #555 !important;
   color: #aaa !important;
   cursor: not-allowed;
   box-shadow: none;

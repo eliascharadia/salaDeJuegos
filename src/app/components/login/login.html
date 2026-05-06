@@ -1,19 +1,12 @@
 <div class="container-fluid vh-100 d-flex justify-content-center align-items-center bg-gamer">
   
-  <div class="particles">
-    @for (p of [].constructor(30); track $index) {
-      <span></span>
-    }
-  </div>
-
   <div class="login-box-gamer">
 
-    <h3 class="">🎮 Login</h3>
+    <h3 class="login-title">🎮 Inciar Sesion</h3>
 
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
 
       <div class="mb-3">
-        <label class="form-label">Email</label>
         <input type="email" class="form-control gamer-input"
             placeholder="Email"
             [(ngModel)]="email" name="email"
@@ -26,7 +19,6 @@
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Contraseña</label>
         <input type="password" class="form-control gamer-input"
             placeholder="Contraseña"
             [(ngModel)]="password" name="password"
@@ -42,6 +34,11 @@
         <button type="submit" class="btn btn-gamer" [disabled]="loginForm.invalid">
           🚀 Ingresar
         </button>
+      </div>
+
+      <!-- Link -->
+      <div class="text-center text-muted-custom">
+        <small>¿No tenes cuenta? <a routerLink="/register">Registrarse</a></small>
       </div>
 
     </form>
