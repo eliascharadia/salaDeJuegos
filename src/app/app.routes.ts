@@ -5,10 +5,15 @@ import { QuienSoy } from './components/quien-soy/quien-soy';
 import { BienvenidaHome } from './components/bienvenida-home/bienvenida-home';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
+    {
+        path: 'home',
+        component: BienvenidaHome,
+        canActivate: [], // cuando haga el guard ponerlo aca
+        children: []
+    },
     { path: 'login', component: Login },
     {path: 'register', component: Registro},
     {path: 'quiensoy', component: QuienSoy},
-    {path: 'bienvenidahome', component: BienvenidaHome},
-    { path: '**', redirectTo: 'login' }
+    { path: '**', redirectTo: 'home' }
 ];
