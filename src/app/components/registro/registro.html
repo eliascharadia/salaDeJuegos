@@ -6,19 +6,6 @@
 
     <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
 
-      <!-- Nombre -->
-      <div class="mb-3">
-        <input type="text" class="form-control gamer-input"
-          placeholder="Nombre"
-          [(ngModel)]="name" name="name"
-          required minlength="3"
-          #nameField="ngModel">
-
-        @if (nameField.invalid && nameField.touched){
-          <div class="text-danger small mt-1">Mínimo 3 caracteres</div>
-        }
-      </div>
-
       <!-- Email -->
       <div class="mb-3">
         <input type="email" class="form-control gamer-input"
@@ -31,6 +18,45 @@
           <div class="text-danger small mt-1">Correo inválido</div>
         }
       </div>
+
+      <!-- Nombre -->
+      <div class="mb-3">
+        <input type="text" class="form-control gamer-input"
+        placeholder="Nombre"
+        [(ngModel)]="name" name="name"
+          required minlength="3"
+          #nameField="ngModel">
+
+        @if (nameField.invalid && nameField.touched){
+          <div class="text-danger small mt-1">Mínimo 3 caracteres</div>
+        }
+      </div>
+
+      <!-- Apellido -->
+      <div class="mb-3">
+        <input type="text" class="form-control gamer-input"
+        placeholder="Apellido"
+        [(ngModel)]="lastName" name="lastName"
+          required minlength="3"
+          #lastNameField="ngModel">
+
+        @if (lastNameField.invalid && lastNameField.touched){
+          <div class="text-danger small mt-1">Mínimo 3 caracteres</div>
+        }
+      </div>
+
+      <!-- Edad -->
+      <div class="mb-3">
+        <input type="number" class="form-control gamer-input"
+        placeholder="Edad"
+        [(ngModel)]="age" name="age"
+          #ageField="ngModel">
+
+        @if (ageField.invalid && ageField.touched){
+          <div class="text-danger small mt-1">Mínimo 3 caracteres</div>
+        }
+      </div>
+
 
       <!-- Password -->
       <div class="mb-3">
@@ -57,6 +83,17 @@
           <div class="text-danger small mt-1">Las contraseñas no coinciden</div>
         }
       </div>
+
+
+      <!-- Mensaje de error  -->
+       
+      @if (errorMensaje()) {
+
+        <div class="error-box mt-3">
+          <span>⚠ {{ errorMensaje() }}</span>
+        </div>
+
+      }
 
       <!-- Botón -->
       <div class="d-grid mb-3">
