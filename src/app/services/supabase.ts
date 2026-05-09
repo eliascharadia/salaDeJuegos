@@ -5,7 +5,7 @@ import { enviroment } from '../../enviroments/enviroments.prod';
 @Injectable({
   providedIn: 'root',
 })
-export class Supabase {
+export class SupabaseService {
   private client: SupabaseClient;
 
   constructor(){
