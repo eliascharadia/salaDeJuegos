@@ -23,4 +23,25 @@ export class Login {
     if(!success)this.errorMensaje.set('Error de credenciales');
     this.loading.set(false);
   }
+
+  quickLogin(usuario: string) {
+
+    switch(usuario) {
+
+      case 'user1':
+        this.email = 'user1@gmail.com';
+        this.password = '123456';
+        break;
+
+      case 'user2':
+        this.email = 'user2@gmail.com';
+        this.password = '123456';
+        break;
+
+      case 'user3':
+        this.email = 'user3@gmail.com';
+        this.password = '123456';
+        break;
+    }
+}
 }
