@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -9,9 +10,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  isLogged = false; // simulación
-
-  logout() {
-    console.log('Cerrar sesión');
-  }
+  auth = inject(Auth);
 }

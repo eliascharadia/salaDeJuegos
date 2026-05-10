@@ -18,9 +18,9 @@
   <!-- MENU ESCRITORIO -->
   <div class="d-none d-lg-flex ms-auto gap-3 align-items-center">
 
-    @if (isLogged) {
-      <span class="user-name">👤 Elías</span>
-      <button class="btn btn-logout" (click)="logout()">Salir</button>
+    @if (auth.user()) {
+      <span class="user-name">👤 Bienvenido {{ auth.user()?.nombre }}</span>
+      <button class="btn btn-logout" (click)="auth.logout()">Cerrar Sesión</button>
     } @else {
       <a class="btn-link-gamer" routerLink="/login">Iniciar Sesión</a>
       <a class="btn-link-gamer" routerLink="/register">Registrarse</a>
@@ -46,9 +46,9 @@
 
   <div class="offcanvas-body d-flex flex-column gap-3">
 
-    @if (isLogged) {
-      <span class="user-name">👤 Elías</span>
-      <button class="btn btn-logout" (click)="logout()">Salir</button>
+    @if (auth.user()) {
+      <span class="user-name">👤 Bienvenido {{ auth.user()?.nombre }}</span>
+      <button class="btn btn-logout" (click)="auth.logout()">Cerrar sesión</button>
     } @else {
       <a class="btn-link-gamer" routerLink="/login" data-bs-dismiss="offcanvas">Iniciar Sesión</a>
       <a class="btn-link-gamer" routerLink="/register" data-bs-dismiss="offcanvas">Registrarse</a>
