@@ -19,12 +19,23 @@ export class Auth {
 
   async getSession(){
     const {data: {session}} = await this.supabase.getClient().auth.getSession();
-    if (session?.user){
-      this.user.set({
-        id: session.user.id,
-        email: session.user.email?? ''
-      })
+
+    if (!session?.user) {
+    this.user.set(null);
+    return;
     }
+
+    const { data: profile } = await this.supabase.getClient()
+    .from('usuarios')
+    .select('*')
+    .eq('id', session.user.id)
+    .single();
+
+     this.user.set({
+      id: session.user.id,
+      email: session.user.email ?? '',
+      nombre: profile?.nombre
+    });
   }
 
   async register(usuarioData: UsuarioRegistro): Promise<string | null> {
@@ -82,5 +93,11 @@ async login(email: string, password: string) {
   return false;
 }
 
+async logout() {
+
+  await this.supabase.getClient().auth.signOut();
+
+  this.user.set(null);
+}
 
 }
