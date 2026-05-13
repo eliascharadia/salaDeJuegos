@@ -18,9 +18,20 @@
   <!-- MENU ESCRITORIO -->
   <div class="d-none d-lg-flex ms-auto gap-3 align-items-center">
 
-    @if (auth.user()) {
-      <span class="user-name">👤 Bienvenido {{ auth.user()?.nombre }}</span>
-      <button class="btn btn-logout" (click)="auth.logout()">Cerrar Sesión</button>
+    @if (user()) {
+      <span class="user-name">👤 Bienvenido {{ user()?.nombre }}</span>
+      <button class="btn btn-logout" (click)="cerrarSession()">
+        @if (loading()){
+          <span 
+              class="spinner-border spinner-border-sm me-2"
+              role="status"
+              aria-hidden="true">
+          </span>
+          Saliendo ...
+        }@else{
+          Cerrar Sesión
+        }
+      </button>
     } @else {
       <a class="btn-link-gamer" routerLink="/login">Iniciar Sesión</a>
       <a class="btn-link-gamer" routerLink="/register">Registrarse</a>
