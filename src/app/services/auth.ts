@@ -85,12 +85,28 @@ async login(email: string, password: string) {
   const {data, error} = await this.supabase.getClient().auth.signInWithPassword({email, password});
   if(error) return false;
 
-  if(data.user){
-      this.user.set({id: data.user.id, email: data.user.email?? ''})
-      this.router.navigate(['/home']);
-      return true;
+  const { data: profile, error: profileError } =
+    await this.supabase.getClient()
+      .from('usuarios')
+      .select('*')
+      .eq('id', data.user.id)
+      .single();
+
+  if (profileError) {
+      return false;
   }
-  return false;
+
+  this.user.set({
+    id: data.user.id,
+    email: data.user.email ?? '',
+    nombre: profile.nombre,
+    apellido: profile.apellido,
+    edad: profile.edad
+  });
+
+  this.router.navigate(['/home']);
+  return true;
+
 }
 
 async logout() {
