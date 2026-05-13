@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Auth } from '../../services/auth';
 import { UsuarioRegistro } from '../../models/usuario';
@@ -7,26 +7,29 @@ import { UsuarioRegistro } from '../../models/usuario';
 
 @Component({
   selector: 'app-registro',
-  imports: [FormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './registro.html',
   styleUrl: './registro.css',
 })
 export class Registro {
   private auth = inject(Auth);
+  private fb = inject(FormBuilder);
 
-  email =  '';
-  password = '';
-  confirmPassword = '';
-  name = '';
-  lastName = '';
-  age = 0;
+  registerForm = this.fb.group({
+    email: ['',[Validators.required,Validators.email]],
+    name: ['',[Validators.required,Validators.required]],
+    lastname: ['',[Validators.required,Validators.required]],
+    age: [0,[Validators.required,Validators.max(100), Validators.min(10)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+  })
 
   usuarioData: UsuarioRegistro = {
-    nombre: this.name,
-      apellido: this.lastName,
-      edad: this.age,
-      email: this.email,
-      password: this.password,
+      nombre: this.registerForm.value.name?? '',
+      apellido: this.registerForm.value.lastname?? '',
+      edad: this.registerForm.value.age?? 0,
+      email: this.registerForm.value.name?? '',
+      password: this.registerForm.value.name?? ''
   }
   
   loading = signal(false);
@@ -34,11 +37,11 @@ export class Registro {
   
   async onSubmit(){
     this.usuarioData = {
-      nombre: this.name,
-      apellido: this.lastName,
-      edad: this.age,
-      email: this.email,
-      password: this.password,
+      nombre: this.registerForm.value.name?? '',
+      apellido: this.registerForm.value.lastname?? '',
+      edad: this.registerForm.value.age?? 0,
+      email: this.registerForm.value.name?? '',
+      password: this.registerForm.value.name?? ''
     };
     
     this.loading.set(true);
