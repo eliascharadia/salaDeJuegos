@@ -112,8 +112,9 @@ async login(email: string, password: string) {
 async logout() {
 
   await this.supabase.getClient().auth.signOut();
-
   this.user.set(null);
+  this.router.navigate(['/home']);
+  return true;
 }
 
 }
