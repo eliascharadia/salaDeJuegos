@@ -7,12 +7,15 @@ import { authGuard } from './guards/auth';
 import { Ahorcado } from './components/ahorcado/ahorcado';
 
 export const routes: Routes = [
-    {path: '', redirectTo: 'home', pathMatch: 'full'},
+    { path: 'home', component: BienvenidaHome},
     {
-        path: 'home',
+        path: '',
         component: BienvenidaHome,
-        canActivate: [], // cuando haga el guard ponerlo aca
-        children: []
+        canActivate: [authGuard], // cuando haga el guard ponerlo aca
+        children: [
+            {path: '', redirectTo: 'home', pathMatch: 'full'},
+            {path: 'ahorcado', component: Ahorcado}
+        ]
     },
     { path: 'login', component: Login },
     {path: 'register', component: Registro},
