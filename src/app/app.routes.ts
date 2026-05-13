@@ -3,6 +3,8 @@ import { Login } from './components/login/login';
 import { Registro } from './components/registro/registro';
 import { QuienSoy } from './components/quien-soy/quien-soy';
 import { BienvenidaHome } from './components/bienvenida-home/bienvenida-home';
+import { authGuard } from './guards/auth';
+import { Ahorcado } from './components/ahorcado/ahorcado';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
