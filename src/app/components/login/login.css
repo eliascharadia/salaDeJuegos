@@ -102,6 +102,33 @@
   color: #ff4d4d !important;
 }
 
+
+.error-box {
+  background: rgba(255, 0, 60, 0.12);
+  border: 1px solid rgba(255, 0, 60, 0.5);
+  color: #ff4d6d;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Animación */
 @keyframes moveGrid {
   0% {

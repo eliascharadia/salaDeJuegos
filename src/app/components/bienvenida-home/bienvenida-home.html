@@ -1,1 +1,36 @@
-<p>bienvenida-home works!</p>
+<div class="home-container d-flex flex-column align-items-center justify-content-center">
+
+  <h1 class="title mb-4">🎮 Sala de Juegos</h1>
+
+  <p class="subtitle mb-5">
+    Elegí un juego para comenzar a jugar
+  </p>
+
+  <div class="games-grid">
+
+    <a routerLink="/ahorcado" class="game-card">
+      <span>🧠</span>
+      <p>Ahorcado</p>
+    </a>
+
+    <a routerLink="/mayoromenor" class="game-card">
+      <span>📈</span>
+      <p>Mayor o Menor</p>
+    </a>
+
+    <a routerLink="/preguntados" class="game-card">
+      <span>❓</span>
+      <p>Preguntados</p>
+    </a>
+
+    <a routerLink="/juegopropio" class="game-card">
+      <span>🔥</span>
+      <p>Juego Propio</p>
+    </a>
+
+  </div>
+
+  <main class="main-content">
+        <router-outlet></router-outlet>
+  </main>
+</div>

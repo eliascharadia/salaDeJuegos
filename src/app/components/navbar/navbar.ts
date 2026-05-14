@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -9,9 +10,16 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  isLogged = false; // simulación
+  auth = inject(Auth);
 
-  logout() {
-    console.log('Cerrar sesión');
+  user = this.auth.user;
+  loading = signal(false);
+  errorMensaje = signal<string | null>(null);
+
+  async cerrarSession(){
+    this.loading.set(true);
+    const success = await this.auth.logout();
+    if (!success) this.errorMensaje.set('Error al cerar sesión');
+    this.loading.set(false);
   }
 }

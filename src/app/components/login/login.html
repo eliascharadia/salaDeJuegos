@@ -4,35 +4,54 @@
 
     <h3 class="login-title">🎮 Inciar Sesion</h3>
 
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <form [formGroup]="loginForm"  (ngSubmit)="onSumbit()">
 
       <div class="mb-3">
-        <input type="email" class="form-control gamer-input"
-            placeholder="Email"
-            [(ngModel)]="email" name="email"
-            required email
-            #emailField="ngModel">
+        <input type="email" 
+          formControlName="email" 
+          class="form-control gamer-input" 
+          placeholder="correo@gmail.com">
 
-        @if (emailField.invalid && emailField.touched){
-          <div class="text-danger small mt-1">Correo inválido</div>
+        @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
+          <div class="text-danger small mt-1">
+              @if(loginForm.get('email')?.errors?.['required']){ El email es obligatorio }
+              @if(loginForm.get('email')?.errors?.['email']){ El formato es invalido }  
+          </div>
         }
       </div>
 
       <div class="mb-3">
-        <input type="password" class="form-control gamer-input"
-            placeholder="Contraseña"
-            [(ngModel)]="password" name="password"
-            required minlength="6"
-            #passField="ngModel">
+        <input type="password" formControlName="password" class="form-control gamer-input"
+            placeholder="Contraseña">
 
-        @if (passField.invalid && passField.touched){
-          <div class="text-danger small mt-1">Mínimo 6 caracteres</div>
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
+          <div class="text-danger small mt-1">
+            @if(loginForm.get('password')?.errors?.['required']){ La constraseña es obligatoria }
+            @if(loginForm.get('password')?.errors?.['minlength']){ El minimo de caracteres es 6 }
+          </div>
         }
       </div>
+
+      @if (errorMensaje()) {
+
+        <div class="error-box mt-3">
+          <span>⚠ {{ errorMensaje() }}</span>
+        </div>
+
+      }
 
       <div class="d-grid">
         <button type="submit" class="btn btn-gamer" [disabled]="loginForm.invalid">
-          🚀 Ingresar
+           @if(loading()){ 
+            <span 
+              class="spinner-border spinner-border-sm me-2"
+              role="status"
+              aria-hidden="true">
+            </span>
+            Cargando ... 
+          }@else { 
+            🚀 Ingresar 
+          }
         </button>
       </div>
 
@@ -43,6 +62,37 @@
 
     </form>
 
+    
+    <div class="quick-access mt-4">
+  
+    <p class="quick-title">⚡ Acceso rápido</p>
+  
+    <div class="d-flex flex-column gap-2">
+  
+      <button 
+        type="button"
+        class="btn btn-quick"
+        (click)="quickLogin('user1')">
+        👑 User1
+      </button>
+  
+      <button 
+        type="button"
+        class="btn btn-quick"
+        (click)="quickLogin('user2')">
+        🧪 User2
+      </button>
+  
+      <button 
+        type="button"
+        class="btn btn-quick"
+        (click)="quickLogin('user3')">
+        🎮 User3
+      </button>
+  
   </div>
-
+  
+    </div>
+  </div>
+  
 </div>

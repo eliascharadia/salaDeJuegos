@@ -4,44 +4,74 @@
 
     <h3 class="register-title">📝 Crear Cuenta</h3>
 
-    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-
-      <!-- Nombre -->
-      <div class="mb-3">
-        <input type="text" class="form-control gamer-input"
-          placeholder="Nombre"
-          [(ngModel)]="name" name="name"
-          required minlength="3"
-          #nameField="ngModel">
-
-        @if (nameField.invalid && nameField.touched){
-          <div class="text-danger small mt-1">Mínimo 3 caracteres</div>
-        }
-      </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
       <!-- Email -->
       <div class="mb-3">
         <input type="email" class="form-control gamer-input"
           placeholder="Email"
-          [(ngModel)]="email" name="email"
-          required email
-          #emailField="ngModel">
+          formControlName="email">
 
-        @if (emailField.invalid && emailField.touched){
-          <div class="text-danger small mt-1">Correo inválido</div>
+         @if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('email')?.errors?.['required']){ El email es obligatorio }
+              @if(registerForm.get('email')?.errors?.['email']){ El formato es invalido }  
+          </div>
         }
       </div>
+
+      <!-- Nombre -->
+      <div class="mb-3">
+        <input type="text" class="form-control gamer-input"
+        placeholder="Nombre"
+        formControlName="name">
+
+        @if(registerForm.get('name')?.invalid && registerForm.get('name')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('name')?.errors?.['required']){ El nombre es obligatorio }
+          </div>
+        }
+      </div>
+
+      <!-- Apellido -->
+      <div class="mb-3">
+        <input type="text" class="form-control gamer-input"
+        placeholder="Apellido"
+        formControlName="lastname">
+       @if(registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('lastname')?.errors?.['required']){ El apellido es obligatorio }
+          </div>
+        }
+      </div>
+
+      <!-- Edad -->
+      <div class="mb-3">
+        <input type="number" class="form-control gamer-input"
+        formControlName="age"
+        >
+
+        @if(registerForm.get('age')?.invalid && registerForm.get('age')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('age')?.errors?.['required']){ La edad es obligatoria }
+              @if(registerForm.get('age')?.errors?.['max']){ Ingrese una edad valida }
+              @if(registerForm.get('age')?.errors?.['min']){ Ingrese una edad valida }
+          </div>
+        }
+      </div>
+
 
       <!-- Password -->
       <div class="mb-3">
         <input type="password" class="form-control gamer-input"
           placeholder="Contraseña"
-          [(ngModel)]="password" name="password"
-          required minlength="6"
-          #passField="ngModel">
+          formControlName="password">
 
-        @if (passField.invalid && passField.touched){
-          <div class="text-danger small mt-1">Mínimo 6 caracteres</div>
+         @if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('password')?.errors?.['required']){ La contraseña es obligatoria }
+              @if(registerForm.get('password')?.errors?.['minLength']){ Minimo 6 caracteres }
+          </div>
         }
       </div>
 
@@ -49,18 +79,30 @@
       <div class="mb-3">
         <input type="password" class="form-control gamer-input"
           placeholder="Confirmar contraseña"
-          [(ngModel)]="confirmPassword" name="confirmPassword"
-          required
-          #confirmField="ngModel">
+          formControlName="confirmPassword">
 
-        @if (confirmPassword !== password && confirmField.touched){
-          <div class="text-danger small mt-1">Las contraseñas no coinciden</div>
+         @if(registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('confirmPassword')?.errors?.['required']){ La contraseña es obligatoria }
+              @if(registerForm.get('confirmPassword')?.errors?.['minLength']){ Minimo 6 caracteres }
+          </div>
         }
       </div>
 
+
+      <!-- Mensaje de error  -->
+       
+      @if (errorMensaje()) {
+
+        <div class="error-box mt-3">
+          <span>⚠ {{ errorMensaje() }}</span>
+        </div>
+
+      }
+
       <!-- Botón -->
       <div class="d-grid mb-3">
-        <button type="submit" class="btn btn-gamer" [disabled]="registerForm.invalid || confirmPassword !== password">
+        <button type="submit" class="btn btn-gamer" [disabled]="registerForm.invalid || registerForm.get('password')?.value !== registerForm.get('confirmPassword')?.value">
           🚀 Registrarse
         </button>
       </div>

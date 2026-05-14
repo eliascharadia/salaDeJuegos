@@ -1,19 +1,45 @@
-<nav class="navbar navbar-dark bg-navbar px-4">
+<nav class="navbar navbar-dark bg-navbar px-4 navbar-expand-lg">
 
   <!-- LOGO -->
   <a class="navbar-brand fw-bold" routerLink="/bienvenidahome">
-    <img src="Favicon1.png" width="32" height="32"> SalaDeJuegos
+    <img src="Favicon1.png" width="32" height="32">
+    SalaDeJuegos
   </a>
 
-  <!-- BOTÓN HAMBURGUESA -->
+  <!-- BOTÓN PARA CELULAR -->
   <button 
-    class="navbar-toggler" 
+    class="navbar-toggler d-lg-none"
     type="button"
     data-bs-toggle="offcanvas"
-    data-bs-target="#menuLateral"
-  >
+    data-bs-target="#menuLateral">
     <span class="navbar-toggler-icon"></span>
   </button>
+
+  <!-- MENU ESCRITORIO -->
+  <div class="d-none d-lg-flex ms-auto gap-3 align-items-center">
+
+    @if (user()) {
+      <span class="user-name">👤 Bienvenido {{ user()?.nombre }}</span>
+      <button class="btn btn-logout" (click)="cerrarSession()">
+        @if (loading()){
+          <span 
+              class="spinner-border spinner-border-sm me-2"
+              role="status"
+              aria-hidden="true">
+          </span>
+          Saliendo ...
+        }@else{
+          Cerrar Sesión
+        }
+      </button>
+    } @else {
+      <a class="btn-link-gamer" routerLink="/login">Iniciar Sesión</a>
+      <a class="btn-link-gamer" routerLink="/register">Registrarse</a>
+    }
+
+    <a class="btn-link-gamer" routerLink="/quiensoy">¿Quién soy?</a>
+
+  </div>
 
 </nav>
 
@@ -31,9 +57,9 @@
 
   <div class="offcanvas-body d-flex flex-column gap-3">
 
-    @if (isLogged) {
-      <span class="user-name">👤 Elías</span>
-      <button class="btn btn-logout" (click)="logout()">Salir</button>
+    @if (auth.user()) {
+      <span class="user-name">👤 Bienvenido {{ auth.user()?.nombre }}</span>
+      <button class="btn btn-logout" (click)="auth.logout()">Cerrar sesión</button>
     } @else {
       <a class="btn-link-gamer" routerLink="/login" data-bs-dismiss="offcanvas">Iniciar Sesión</a>
       <a class="btn-link-gamer" routerLink="/register" data-bs-dismiss="offcanvas">Registrarse</a>
@@ -42,5 +68,3 @@
     <a class="btn-link-gamer" routerLink="/quiensoy" data-bs-dismiss="offcanvas">¿Quién soy?</a>
 
   </div>
-
-</div>
