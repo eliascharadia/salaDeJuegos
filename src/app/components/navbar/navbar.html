@@ -1,0 +1,46 @@
+<nav class="navbar navbar-dark bg-navbar px-4">
+
+  <!-- LOGO -->
+  <a class="navbar-brand fw-bold" routerLink="/bienvenidahome">
+    <img src="Favicon1.png" width="32" height="32"> SalaDeJuegos
+  </a>
+
+  <!-- BOTÓN HAMBURGUESA -->
+  <button 
+    class="navbar-toggler" 
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#menuLateral"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+</nav>
+
+<!-- MENÚ LATERAL -->
+<div 
+  class="offcanvas offcanvas-end bg-navbar text-white" 
+  tabindex="-1" 
+  id="menuLateral"
+>
+
+  <div class="offcanvas-header">
+    <h5>Menú</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body d-flex flex-column gap-3">
+
+    @if (isLogged) {
+      <span class="user-name">👤 Elías</span>
+      <button class="btn btn-logout" (click)="logout()">Salir</button>
+    } @else {
+      <a class="btn-link-gamer" routerLink="/login" data-bs-dismiss="offcanvas">Iniciar Sesión</a>
+      <a class="btn-link-gamer" routerLink="/register" data-bs-dismiss="offcanvas">Registrarse</a>
+    }
+
+    <a class="btn-link-gamer" routerLink="/quiensoy" data-bs-dismiss="offcanvas">¿Quién soy?</a>
+
+  </div>
+
+</div>

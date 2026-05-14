@@ -1,0 +1,48 @@
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center bg-gamer">
+  
+  <div class="login-box-gamer w-100">
+
+    <h3 class="login-title">🎮 Inciar Sesion</h3>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+
+      <div class="mb-3">
+        <input type="email" class="form-control gamer-input"
+            placeholder="Email"
+            [(ngModel)]="email" name="email"
+            required email
+            #emailField="ngModel">
+
+        @if (emailField.invalid && emailField.touched){
+          <div class="text-danger small mt-1">Correo inválido</div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <input type="password" class="form-control gamer-input"
+            placeholder="Contraseña"
+            [(ngModel)]="password" name="password"
+            required minlength="6"
+            #passField="ngModel">
+
+        @if (passField.invalid && passField.touched){
+          <div class="text-danger small mt-1">Mínimo 6 caracteres</div>
+        }
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-gamer" [disabled]="loginForm.invalid">
+          🚀 Ingresar
+        </button>
+      </div>
+
+      <!-- Link -->
+      <div class="text-center text-muted-custom">
+        <small>¿No tenes cuenta? <a routerLink="/register">Registrarse</a></small>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

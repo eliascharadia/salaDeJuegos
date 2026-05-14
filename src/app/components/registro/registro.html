@@ -1,0 +1,77 @@
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center bg-gamer">
+
+  <div class="register-box w-100">
+
+    <h3 class="register-title">📝 Crear Cuenta</h3>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+
+      <!-- Nombre -->
+      <div class="mb-3">
+        <input type="text" class="form-control gamer-input"
+          placeholder="Nombre"
+          [(ngModel)]="name" name="name"
+          required minlength="3"
+          #nameField="ngModel">
+
+        @if (nameField.invalid && nameField.touched){
+          <div class="text-danger small mt-1">Mínimo 3 caracteres</div>
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <input type="email" class="form-control gamer-input"
+          placeholder="Email"
+          [(ngModel)]="email" name="email"
+          required email
+          #emailField="ngModel">
+
+        @if (emailField.invalid && emailField.touched){
+          <div class="text-danger small mt-1">Correo inválido</div>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <input type="password" class="form-control gamer-input"
+          placeholder="Contraseña"
+          [(ngModel)]="password" name="password"
+          required minlength="6"
+          #passField="ngModel">
+
+        @if (passField.invalid && passField.touched){
+          <div class="text-danger small mt-1">Mínimo 6 caracteres</div>
+        }
+      </div>
+
+      <!-- Confirmar Password -->
+      <div class="mb-3">
+        <input type="password" class="form-control gamer-input"
+          placeholder="Confirmar contraseña"
+          [(ngModel)]="confirmPassword" name="confirmPassword"
+          required
+          #confirmField="ngModel">
+
+        @if (confirmPassword !== password && confirmField.touched){
+          <div class="text-danger small mt-1">Las contraseñas no coinciden</div>
+        }
+      </div>
+
+      <!-- Botón -->
+      <div class="d-grid mb-3">
+        <button type="submit" class="btn btn-gamer" [disabled]="registerForm.invalid || confirmPassword !== password">
+          🚀 Registrarse
+        </button>
+      </div>
+
+      <!-- Link -->
+      <div class="text-center text-muted-custom">
+        <small>¿Ya tenés cuenta? <a routerLink="/login">Iniciar sesión</a></small>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
