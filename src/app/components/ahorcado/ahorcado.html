@@ -1,1 +1,24 @@
-<p>ahorcado works!</p>
+<h2>{{ hiddenWord.join(' ') }}</h2>
+
+<p>Errores: {{ errors }} / {{ maxErrors }}</p>
+
+@if (gameOver()){
+    <p>
+    {{ win ? '🎉 Ganaste!' : '💀 Perdiste!' }}
+    </p>
+}
+
+<div class="letters">
+
+  @for (letter of letters; track letter) {
+
+    <button
+      (click)="selectLetter(letter)"
+      [disabled]="selectedLetters.includes(letter) || gameOver()"
+    >
+      {{ letter }}
+    </button>
+
+  }
+
+</div>
